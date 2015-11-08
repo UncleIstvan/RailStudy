@@ -1,0 +1,21 @@
+<h1>Task manager</h1>
+<% if @tasks.empty? %>
+    <h2>Currently there's no tasks</h2>
+<%else%>
+
+    <%= form_tag({:controller=>"tasks", :action=>"search"}, method: :get) do %>
+        <%= number_field_tag :id %>
+        <%= submit_tag 'Search task by id', id: nil %>
+    <% end %>
+
+    <%= render partial: 'table', locals: {tasks: @tasks} %>
+
+
+<%end%>
+
+
+<%= button_to 'View pending', tasks_filter_path('pending')%>
+<%= button_to 'View completed',  tasks_filter_path('completed')%>
+<%= button_to 'View all', all_tasks_path %>
+
+<%= button_to 'create new task', new_task_path, method: :get %>

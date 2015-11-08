@@ -1,0 +1,7 @@
+<%= form_for @task do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+    <br>
+    <%= f.submit 'Save' %>
+<% end %>
+
+<%= link_to 'Go back to all tasks', all_tasks_path %>

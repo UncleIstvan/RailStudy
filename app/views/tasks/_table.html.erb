@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Task description</th>
+    <th>Status</th>
+    <th>Toggle status</th>
+    <th>Remove</th>
+  </tr>
+
+  <% tasks.each do |task| %>
+      <tr>
+        <td> <%=task.id %></td>
+        <td> <%=task.name %></td>
+        <td> <%=task.task_status %></td>
+        <td><%= link_to 'toggle', switch_task_path(task), method: :switch  %></td>
+        <td><%= link_to 'remove', task_path(task), method: :delete, data: { confirm: 'Are you sure' } %></td>
+      </tr>
+     <%end%>
+       </table>
