@@ -1,19 +1,50 @@
-<table>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-striped">
   <tr>
-    <th>Id</th>
-    <th>Task description</th>
-    <th>Status</th>
-    <th>Toggle status</th>
-    <th>Remove</th>
+    <th class = "col-md-1">Id</th>
+    <th class = "col-md-6">Task description</th>
+    <th class = "col-md-1">Status</th>
+    <th class = "col-md-2">Task type</th>
+    <th class = "col-md-2">Mark completed/remove</th>
   </tr>
 
   <% tasks.each do |task| %>
       <tr>
-        <td> <%=task.id %></td>
-        <td> <%=task.name %></td>
-        <td> <%=task.task_status %></td>
-        <td><%= link_to 'toggle', switch_task_path(task), method: :switch  %></td>
-        <td><%= link_to 'remove', task_path(task), method: :delete, data: { confirm: 'Are you sure' } %></td>
+        <td class = "col-md-1"> <%=task.id %></td>
+        <td class = "col-md-6"> <%=link_to task.name, task_path(task) %></td>
+        <td class = "col-md-1"> <%=task.task_status %></td>
+        <td class = "col-md-2"> <%=task.tasktype.name %> </td>
+        <td class = "col-md-2"><div class="btn-group" role="group">
+        <%= link_to 'mark', switch_task_path(task), method: :switch  %>
+        <%= link_to 'remove', task_path(task), method: :delete, data: { confirm: 'Are you sure' } %>
+          </div>
+        </td>
       </tr>
      <%end%>
        </table>
+
+    <div class="btn-group left" role="group">
+      <%= link_to 'Add new task', action: :new %>
+      <%= link_to 'View pending', tasks_filter_path('pending')%>
+      <%= link_to 'View completed',  tasks_filter_path('completed')%>
+      <%= link_to 'View all', tasks_path %>
+      <%= link_to 'Go to task types', tasktypes_path %>
+    </div>
+
+
+    <div class="row"> <div class="col-sm-2">
+      <%= form_tag({:controller=>"tasks", :action=>"search"}, method: :get) do %>
+          <%= number_field_tag :id %>
+          <%= submit_tag 'Search task by id', id: nil %>
+      <% end %>
+    </div>
+      <div class = "col-sm-3"><%= select_tag 'task type', options_from_collection_for_select(Tasktype.all, "id", "name"),prompt: 'select type',:onchange => "window.location.replace('/tasks/type/'+this.value);" %>
+      <p> filter by type<p>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

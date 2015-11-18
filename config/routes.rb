@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+
+
   # Example resource route with options:
-     resources :tasks do
+     resources :tasks, :tasktypes do
   #     member do
   #       get 'short'
   #       post 'toggle'
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
   #
       collection do
         get 'search'
+        get 'name_search'
        end
      end
 
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
    end
 
    get ':task_status' => 'tasks#index', as: 'tasks_filter'
+   get 'tasks/type/:tasktype_id' => 'tasks#index', as: 'tasks_type_filter'
    get '/pending' => 'tasks#pending'
    get '/completed' => 'tasks#completed'
    post '/pending' => 'tasks#pending'
@@ -41,6 +45,8 @@ Rails.application.routes.draw do
    post '/all' => 'tasks#index'
    get '/all' => 'tasks#index', as: 'all_tasks'
    post 'tasks/:id/switch' => 'tasks#switch', as: :switch
+   post 'tasktypes/:id/edit' => 'tasktypes#edit', as: :edit
+
 
 
 

@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108095207) do
+ActiveRecord::Schema.define(version: 20151116094258) do
 
   create_table "tasks", force: :cascade do |t|
+    t.integer  "tasktype_id"
     t.string   "name"
-    t.string   "task_status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "task_status", default: "pending"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "tasktypes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

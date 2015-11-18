@@ -1,9 +1,7 @@
 class Task < ActiveRecord::Base
 
-  @@task_status = ['pending', 'completed']
+  belongs_to :tasktype
 
-  def self.task_status
-    @@task_status
-  end
-
+  validates :name,  presence: true, allow_blank: false, length:  {maximum: 500}
+  validates :tasktype_id,  presence: true, allow_blank: false
 end

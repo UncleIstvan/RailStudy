@@ -1,7 +1,20 @@
+<div class="page-header">
+  <h1>  <%=@task.name%></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+
 <ul>
   <li><%= "ID: #{@task.id}"%></li>
-  <li><%= "Name: #{@task.name}"%></li>
-  <li><%= "Status #{@task.task_status}"%></li>
+
+  <li><%= "Status: #{@task.task_status}"%></li>
+  <li><%= "Task type: #{@task.tasktype.name}"%></li>
 </ul>
 
-<%= link_to 'Go back to all tasks', all_tasks_path %>
+    <div class="btn-group">
+<%= link_to 'Go back to all tasks', tasks_path %>
+    <%= link_to 'Mark completed', switch_task_path(@task), method: :switch  %>
+    </div>
+      </div>
+</div>
