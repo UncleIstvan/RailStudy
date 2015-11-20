@@ -1,9 +1,9 @@
 <h1>Search result</h1>
 <% if @taskstypes.size == 0 %>
     <h2>Currently there's no tasks that match search criteria</h2>
-<%else%>
+<% else %>
 
-    <%= form_tag({:controller=>"tasktypes", :action=>"name_search"}, method: :get) do %>
+    <%= form_tag({:controller => "tasktypes", :action => "name_search"}, method: :get) do %>
         <%= text_field_tag :name %>
         <%= submit_tag 'Search tasktype by name', name: nil %>
     <% end %>
@@ -11,4 +11,4 @@
 
     <%= render partial: 'table', locals: {taskstypes: @tasktypes} %>
 
-<%end%>
+<% end %>

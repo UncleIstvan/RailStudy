@@ -2,16 +2,17 @@ module ApplicationHelper
 
   def new_form (form_builder, field_name)
 
-    result = "<p> #{form_builder.label(field_name)} <br>#{form_builder.text_field(field_name)}</p>"
-    result.html_safe
+    "<p> #{form_builder.label(field_name)} <br>#{form_builder.text_field(field_name)}</p>".html_safe
 
   end
 
-  def type_selector (form_builder,name, tasktype)
-
-    result = "<p> #{form_builder.label(tasktype)}</p> <br> <p>#{form_builder.collection_select(:task, :tasktype_id, Tasktype.all, :id, :tasktype_name, {:prompt => true})}}</p>"
-    result.html_safe
+  def collection_selector (form_builder, field_name, method, collection, value_method, text_method, options = {}, html_options = {})
+    "<p> #{form_builder.label field_name} </p> <p> #{form_builder.collection_select(method, collection, value_method, text_method, options, html_options)}</p>".html_safe
   end
- # {form_builder.collection_select(:task, :tasktype_id, Tasktype.all, :id, :tasktype_name, {:prompt => true})}
+
+  def bs_glyph (glyph_name, text_before = '', text_after = '')
+
+    "#{text_before} <span class=\"glyphicon glyphicon-#{glyph_name.gsub(/\s/, '-')}\"></span> #{text_after}".html_safe
+  end
+
 end
-

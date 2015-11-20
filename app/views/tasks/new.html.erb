@@ -1,26 +1,27 @@
-<div class = row>
-  <div class = "col-md-4">
+<div class=row>
+  <div class="col-md-4">
 
-<div class="page-header">
-  <h1>Add new task</h1>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-
-
-<%= form_for @task do |f| %>
-
-    <%= new_form f, :name%>
-    <%= f.label :tasktype_id%>
-    <%= f.collection_select :tasktype_id, Tasktype.all, :id, :name, prompt: true %>
-    <br>
-    <%= f.submit 'Create' %>
-<% end %>
-
-<%= link_to 'Go back to all tasks', tasks_path %>
- </div>
+    <div class="page-header">
+      <h1>Add new task</h1>
     </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+
+        <%= form_for @task do |f| %>
+
+            <%= new_form f, :name %>
+
+            <%= collection_selector(f, :tasktype, :tasktype_id, Tasktype.all, :id, :name, prompt: true) %>
+
+            <br>
+            <%= f.submit 'Create' %>
+        <% end %>
+
+        <%= link_to 'Go back to all tasks', tasks_path %>
       </div>
+    </div>
+  </div>
 </div>
 

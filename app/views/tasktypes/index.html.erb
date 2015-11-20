@@ -6,11 +6,12 @@
         <small><%= action_name %></small>
     <% end %>
 
+    <div class="btn-group left" role="group">
+      <%= link_to bs_glyph('plus', '', 'Add new task type'), action: :new %>
+      <%= link_to bs_glyph('arrow right', 'Go to tasks'), tasks_path %>
+    </div>
 
   </h1>
 </div>
 
-
-
-
-    <%= render partial: 'table', locals: {tasktypes: @tasktypes} %>
+<%= render partial: 'table', locals: {tasktypes: @tasktypes} %>

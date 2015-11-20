@@ -1,14 +1,30 @@
 <div class="page-header">
   <h1><%= controller_name.humanize %>
     <% if @tasks.empty? %>
-        <div class="bg-warning"> <small>nothing found</small> </div>
+        <div class="bg-warning">
+          <small>nothing found</small>
+        </div>
     <% else %>
         <small><%= action_name %></small>
     <% end %>
 
 
+    <div class="btn-group left" role="group">
+
+      <%= link_to bs_glyph('plus', '', 'Add task'), action: :new %>
+
+      <%= link_to bs_glyph('hourglass', '', 'View pending'), tasks_filter_path('pending') %>
+
+      <%= link_to bs_glyph('ok', '', 'View completed'), tasks_filter_path('completed') %>
+
+      <%= link_to bs_glyph('eye open', '', 'View all'), tasks_path %>
+
+      <%= link_to bs_glyph('arrow right', 'Go to task types'), tasktypes_path %>
+
+    </div>
+
   </h1>
 </div>
 
 
-    <%= render partial: 'table', locals: {tasks: @tasks} %>
+<%= render partial: 'table', locals: {tasks: @tasks} %>

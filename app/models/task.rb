@@ -4,4 +4,5 @@ class Task < ActiveRecord::Base
 
   validates :name,  presence: true, allow_blank: false, length:  {maximum: 500}
   validates :tasktype_id,  presence: true, allow_blank: false
+
 end

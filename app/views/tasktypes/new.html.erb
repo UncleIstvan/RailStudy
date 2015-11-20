@@ -1,5 +1,5 @@
-<div class = row>
-  <div class = "col-md-4">
+<div class=row>
+  <div class="col-md-4">
 
     <div class="page-header">
       <h1>Add new type of tasks</h1>
@@ -9,13 +9,12 @@
       <div class="panel-heading">
 
 
+        <%= form_for @tasktype do |f| %>
+            <%= new_form f, :name %>
+            <%= f.submit 'Create' %>
+        <% end %>
 
-      <%= form_for @tasktype do |f| %>
-    <%= new_form f, :name%>
-    <%= f.submit 'Create' %>
-<% end %>
-
-<%= link_to 'Go back to all tasks', tasktypes_path %>
+        <%= link_to 'Go back to all tasks', tasktypes_path %>
 
       </div>
     </div>

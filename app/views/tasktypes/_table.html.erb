@@ -14,28 +14,22 @@
             <td class="col-md-9"> <%= link_to tasktype.name, tasktype_path(tasktype) %></td>
             <td class="col-md-2">
               <div class="btn-group" role="group">
-                <%= link_to 'edit', edit_tasktype_path(tasktype) %>
-                <%= link_to 'remove', tasktype_path(tasktype), method: :delete, data: {confirm: 'Are you sure'} %>
+                <%= link_to bs_glyph('pencil'), edit_tasktype_path(tasktype) %>
+                <%= link_to bs_glyph('trash'), tasktype_path(tasktype), method: :delete, data: {confirm: 'Are you sure'} %>
               </div>
             </td>
           </tr>
       <% end %>
     </table>
 
-
-
-    <div class="btn-group left" role="group">
-      <%= link_to 'Add new tasktype', action: :new %>
-      <%= link_to 'Go to tasks', tasks_path %>
+    <div class="row">
+      <div class="col-sm-6">
+        <%= form_tag({:controller => "tasktypes", :action => "name_search"}, method: :get) do %>
+            <%= text_field_tag :name %>
+            <%= submit_tag 'Search tasktype by name', name: nil %>
+        <% end %>
+      </div>
     </div>
-
-    <div class="row"> <div class="col-sm-6">
-    <%= form_tag({:controller=>"tasktypes", :action=>"name_search"}, method: :get) do %>
-        <%= text_field_tag :name %>
-        <%= submit_tag 'Search tasktype by name', name: nil %>
-    <% end %>
-    </div>
-    </div>
-</div>
+  </div>
 </div>
 
